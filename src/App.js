@@ -4,21 +4,13 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="peacockApp">
+      <div className='guideline'>
+        <img className="guidelineIcon" src="peacockOpen.png" height="42" width="42"></img>
+        <p className='guidetext'>在這個風風雨雨欸社會</p>
+        <button type="button" disabled="disabled">pre</button>
+        <button type="button">next</button>
+      </div>
     </div>
   );
 }
