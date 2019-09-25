@@ -1,12 +1,12 @@
 const showerCard = '嗯嗯，我先去洗澡';
 export const gameStatus = {
   win: 1,
-  lose: 0,
+  lose: 2,
 };
 
 export const questionStatus = {
   continue: 1,
-  notAnswerYet: 0,
+  notAnswerYet: 2,
 };
 
 const lines = [
@@ -16,8 +16,8 @@ const lines = [
   },
   {
     index: 2,
-    question: '台北現在還一直在下，你住哪裡啊？',
-    response: '我在新竹，現在雨已經停了',
+    question: '今天好像全台都在下雨，你那邊有下嗎？',
+    response: '有啊，下午的時候下很大',
     choices: [5, 6, 7],
   },
   {
@@ -30,6 +30,7 @@ const lines = [
     index: 4,
     question: '安安你長得好漂亮 交個朋友嗎？',
     response: showerCard,
+    gameStatus: gameStatus.lose,
     choices: [],
   },
   {

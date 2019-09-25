@@ -62,10 +62,13 @@ class MainGame extends React.Component {
       state: { msgArray },
     } = this;
     console.log(msgArray);
+    if (msgArray[msgArray.length - 1].gameStatus) {
+      alert(msgArray[msgArray.length - 1].gameStatus);
+    }
+
     return (
       <div>
         <p className="gameTitle">To Peacock</p>
-
         {this.renderAry(msgArray)}
       </div>
     );
