@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Guide from './guide';
 import GuideTwo from './GuideTwo';
 import MainGame from './mainGame';
@@ -17,7 +17,6 @@ class App extends React.Component {
           <Route path="/guideTwo/" component={GuideTwo} />
           <Route path="/mainGame/" component={MainGame} />
           <Route path="/outCome/" component={MainGame} />
-          
         </div>
       </Router>
     );
