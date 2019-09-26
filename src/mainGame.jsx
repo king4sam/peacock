@@ -1,23 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import GameMessage from './gameMessage';
 import lineMap, { questionStatus } from './lines';
 
-class MainGame extends React.Component {
-  constructor(props) {
-    super(props);
-    this.sendData = this.sendData.bind(this);
-    this.state = { msgArray: [lineMap.get(1)] };
-    this.render = this.render.bind(this);
-  }
+const MainGame = () => {
+  const [msgArray, setMsgArray] = useState([lineMap.get(1)]);
+  const [gStatus, setGStatus] = useState(0);
 
-  sendData(e, choice) {
-    const {
-      state: { msgArray },
-    } = this;
+  function sendData(e, choice) {
     console.log('choice', choice);
     console.log(lineMap.get(choice));
-    console.log('state', this.state);
+    // console.log('state', this.state);
     console.log('update ary ', {
       ...msgArray[msgArray.length - 1],
       questionStatus: questionStatus.continue,
@@ -26,30 +19,23 @@ class MainGame extends React.Component {
       'new ',
       lineMap.get(msgArray[msgArray.length - 1].choices[choice])
     );
-    this.setState(
+    setMsgArray([
+      ...msgArray.slice(0, msgArray.length - 1),
       {
-        msgArray: [
-          ...msgArray.slice(0, msgArray.length - 1),
-          {
-            ...msgArray[msgArray.length - 1],
-            questionStatus: questionStatus.continue,
-          },
-          lineMap.get(msgArray[msgArray.length - 1].choices[choice]),
-        ],
+        ...msgArray[msgArray.length - 1],
+        questionStatus: questionStatus.continue,
       },
-      () => {
-        console.log('state', this.state);
-      }
-    );
+      lineMap.get(msgArray[msgArray.length - 1].choices[choice]),
+    ]);
   }
 
-  renderAry(messages = []) {
+  function renderAry(messages = []) {
     return (
       <div>
         {messages.map(ele => (
           <GameMessage
             key={`${ele.question}'123fua1`}
-            handler={this.sendData}
+            handler={sendData}
             question={ele}
           />
         ))}
@@ -57,22 +43,23 @@ class MainGame extends React.Component {
     );
   }
 
-  render() {
-    const {
-      state: { msgArray },
-    } = this;
-    console.log(msgArray);
-    if (msgArray[msgArray.length - 1].gameStatus) {
-      alert(msgArray[msgArray.length - 1].gameStatus);
-    }
-
-    return (
-      <div>
-        <p className="gameTitle">To Peacock</p>
-        {this.renderAry(msgArray)}
-      </div>
+  if (msgArray[msgArray.length - 1].gameStatus && gStatus === 0) {
+    alert(
+      msgArray[msgArray.length - 1].question +
+        msgArray[msgArray.length - 1].gameStatus
     );
+    setGStatus(msgArray[msgArray.length - 1].gameStatus);
   }
-}
+
+  return (
+    <div>
+      <div className="gameBox">
+        <p className="gameTitle">To Peacock</p>
+        {renderAry(msgArray)}
+      </div>
+      <div>{gStatus}</div>
+    </div>
+  );
+};
 
 export default MainGame;
