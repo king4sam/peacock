@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GuideIcon from './guideIcon';
 import Guidetext from './guideText';
 import GuideButtons from './guideButtons';
 
 import './App.css';
 
-class Guide extends React.Component {
-  render() {
-    return (
-      <div>
-        <div className="guideline">
-          <GuideIcon />
-          <Guidetext />
-          <GuideButtons />
+const Guide = () => {
+  const [page, setPage] = useState(1);
+  return (
+    <div>
+      <div className="guideline">
+        <div className="guidelineFloatingBox">
+          <GuideIcon page={page} />
+          <Guidetext page={page} />
+          <GuideButtons handler={setPage} page={page} />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Guide;

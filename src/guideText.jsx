@@ -1,13 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class GuideText extends React.Component {
-  render() {
-    return (
-      <div className="guideText">
-        <p className="guideContent">在這個風風雨雨欸社會</p>
-      </div>
-    );
-  }
-}
+const GuideText = props => {
+  const { page } = props;
+  const context = page === 1 ? 'page1' : 'page2';
+  return (
+    <div className="guideText">
+      <p className="guideContent">{context}</p>
+    </div>
+  );
+};
 
 export default GuideText;
+
+GuideText.propTypes = {
+  page: PropTypes.number.isRequired,
+};

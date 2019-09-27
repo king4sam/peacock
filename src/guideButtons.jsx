@@ -1,19 +1,56 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-class GuideButtons extends React.Component {
-  render() {
-    return (
-      <div className="guideButtons">
-        <Link className="guideButton" to="/guideOne">
-          pre
-        </Link>
-        <Link className="guideButton" to="/mainGame">
-          next
-        </Link>
-      </div>
-    );
-  }
-}
+const GuideButtons = props => {
+  const { page, handler } = props;
+  const handleClick = () => {};
+  return (
+    <div className="guideButtons">
+      {page === 1 ? (
+        <>
+          <button type="button" className="guideButton" disabled="disabled">
+            pre
+          </button>
+          <button
+            type="button"
+            className="guideButton"
+            onClick={() => {
+              handler(page + 1);
+            }}
+          >
+            next
+          </button>
+        </>
+      ) : (
+        <>
+          <button
+            type="button"
+            className="guideButton"
+            onClick={() => {
+              handler(page + -1);
+            }}
+          >
+            pre
+          </button>
+          <button
+            type="button"
+            className="guideButton"
+            onClick={() => {
+              window.location.href = '/mainGame';
+            }}
+          >
+            start
+          </button>
+        </>
+      )}
+    </div>
+  );
+};
 
 export default GuideButtons;
+
+GuideButtons.propTypes = {
+  page: PropTypes.number.isRequired,
+  handler: PropTypes.func.isRequired,
+};
