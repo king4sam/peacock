@@ -1,0 +1,41 @@
+.guidelineFloatingBox {
+  margin: 0px auto;
+  text-align: center;
+  border-style: dotted;
+  margin-top: 120px;
+  margin-left: 120px;
+  margin-right: 120px;
+  height: 528px;
+  width: 528px;
+}
+
+.guideline {
+  text-align: center;
+  border-style: double;
+}
+
+.guidelineIcon {
+  margin: auto;
+  vertical-align: middle;
+  border-style: dotted;
+  margin-top: 40px;
+}
+
+.guideText {
+  border-style: dotted;
+  margin-bottom: 32px;
+  margin-left: 48px;
+  margin-right: 48px;
+}
+
+.guideButtons {
+  margin-top: 80px;
+  margin-left: 240px;
+  margin-right: 240px;
+}
+
+.divider {
+  width: 112px;
+  height: auto;
+  display: inline-block;
+}

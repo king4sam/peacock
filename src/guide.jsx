@@ -3,7 +3,7 @@ import GuideIcon from './guideIcon';
 import Guidetext from './guideText';
 import GuideButtons from './guideButtons';
 
-import './App.css';
+import './guide.css';
 
 const Guide = () => {
   const [page, setPage] = useState(1);
@@ -13,8 +13,8 @@ const Guide = () => {
         <div className="guidelineFloatingBox">
           <GuideIcon page={page} />
           <Guidetext page={page} />
-          <GuideButtons handler={setPage} page={page} />
         </div>
+        <GuideButtons handler={setPage} page={page} />
       </div>
     </div>
   );

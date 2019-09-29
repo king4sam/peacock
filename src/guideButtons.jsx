@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const GuideButtons = props => {
   const { page, handler } = props;
-  const handleClick = () => {};
+  // const handleClick = () => {};
   return (
     <div className="guideButtons">
       {page === 1 ? (
@@ -12,6 +11,7 @@ const GuideButtons = props => {
           <button type="button" className="guideButton" disabled="disabled">
             pre
           </button>
+          <div className="divider" />
           <button
             type="button"
             className="guideButton"
@@ -33,6 +33,7 @@ const GuideButtons = props => {
           >
             pre
           </button>
+          <div className="divider" />
           <button
             type="button"
             className="guideButton"
