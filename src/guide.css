@@ -1,12 +1,14 @@
 .guidelineFloatingBox {
   margin: 0px auto;
-  text-align: center;
-  border-style: dotted;
+
+  /* border-style: dotted; */
   margin-top: 120px;
   margin-left: 120px;
   margin-right: 120px;
   height: 528px;
   width: 528px;
+  /* TODO:  */
+  box-shadow: 3px 3px 9px 9px black, -3px -3px 9px black;
 }
 
 .guideline {
@@ -32,10 +34,68 @@
   margin-top: 80px;
   margin-left: 240px;
   margin-right: 240px;
+  text-align: left;
+  height: 88px;
+  display: flex;
+}
+
+.guideButtonDisable {
+  text-align: center;
+  background: -webkit-linear-gradient(#f0f0f0, #dcdcdc);
+  background: -o-linear-gradient(#f0f0f0, #dcdcdc);
+  background: -moz-linear-gradient(#f0f0f0, #dcdcdc);
+  background: linear-gradient(#f0f0f0, #dcdcdc);
+  border: none;
+  color: white;
+  font-size: 32px;
+  border-radius: 50%;
+  height: 88px;
+  width: 88px;
+  padding: 0;
+}
+
+.guideButton {
+  background: -webkit-linear-gradient(#80c3f3, #4a90e2);
+  background: -o-linear-gradient(#80c3f3, #4a90e2);
+  background: -moz-linear-gradient(#80c3f3, #4a90e2);
+  background: linear-gradient(#80c3f3, #4a90e2);
+  border: none;
+  color: white;
+  font-size: 32px;
+  border-radius: 50%;
+  height: 88px;
+  width: 88px;
+  padding: 0;
+  border-width: 0;
+}
+
+.guideButtonStart {
+  background: -webkit-linear-gradient(#80c3f3, #4a90e2);
+  background: -o-linear-gradient(#80c3f3, #4a90e2);
+  background: -moz-linear-gradient(#80c3f3, #4a90e2);
+  background: linear-gradient(#80c3f3, #4a90e2);
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 32px;
+  border-radius: 44px;
+  height: 88px;
+  width: 176px;
+  padding: 0;
+  border-width: 0;
+  margin-left: 24px;
 }
 
 .divider {
   width: 112px;
-  height: auto;
+  height: 88px;
   display: inline-block;
+  padding: 0;
+}
+
+.dividerStart {
+  width: 24px;
+  height: 88px;
+  display: inline-block;
+  padding: 0;
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ReactComponent as RightArrow } from './right-arrow.svg';
+import { ReactComponent as LeftArrow } from './left-arrow.svg';
 
 const GuideButtons = props => {
   const { page, handler } = props;
@@ -8,8 +10,20 @@ const GuideButtons = props => {
     <div className="guideButtons">
       {page === 1 ? (
         <>
-          <button type="button" className="guideButton" disabled="disabled">
-            pre
+          <button
+            type="button"
+            className="guideButtonDisable"
+            disabled="disabled"
+          >
+            <LeftArrow
+              alt="leftArrow"
+              style={{
+                height: '88px',
+                width: '88px',
+                path: { fill: 'yellow' },
+              }}
+              transform="scale(0.5)"
+            />
           </button>
           <div className="divider" />
           <button
@@ -19,7 +33,11 @@ const GuideButtons = props => {
               handler(page + 1);
             }}
           >
-            next
+            <RightArrow
+              alt="RightArrow"
+              style={{ height: '88px', width: '88px' }}
+              transform="scale(0.5)"
+            />
           </button>
         </>
       ) : (
@@ -31,17 +49,20 @@ const GuideButtons = props => {
               handler(page + -1);
             }}
           >
-            pre
+            <LeftArrow
+              alt="leftArrow"
+              style={{ height: '88px', width: '88px' }}
+              transform="scale(0.5)"
+            />
           </button>
-          <div className="divider" />
           <button
             type="button"
-            className="guideButton"
+            className="guideButtonStart"
             onClick={() => {
               window.location.href = '/mainGame';
             }}
           >
-            start
+            Start
           </button>
         </>
       )}
