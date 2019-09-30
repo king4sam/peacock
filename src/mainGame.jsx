@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import nanoid from 'nanoid';
 import GameMessage from './gameMessage';
@@ -32,22 +32,27 @@ ReactModal.setAppElement('#root');
 const MainGame = () => {
   const [msgArray, setMsgArray] = useState([lineMap.get(1)]);
   const [gStatus, setGStatus] = useState(0);
+  useEffect(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  });
 
   const modalIcon =
     gStatus === gameStatus.win ? (
       <img
         className="modalIcon"
         src="peacockOpen.png"
-        height="80px"
-        style={{ opacity: 0.8 }}
+        height="100px"
+        width="128px"
+        style={{ opacity: 0.6, 'margin-top': '40px' }}
         alt="peacockOpen"
       />
     ) : (
       <img
         className="modalIcon"
         src="peacockClose.png"
-        height="80px"
-        style={{ opacity: 0.8 }}
+        height="104px"
+        width="54px"
+        style={{ opacity: 0.6, 'margin-top': '40px' }}
         alt="peacockClose"
       />
     );
@@ -60,9 +65,10 @@ const MainGame = () => {
       </p>
     ) : (
       <p className="modalContent">
-        {loseWord.split('\n').map(it => (
-          <div key={nanoid()}>{it}</div>
-        ))}
+        {[
+          ...loseWord.split('\n').map(it => <div key={nanoid()}>{it}</div>),
+          <div key={nanoid()} style={{ 'padding-bottom': '32px' }} />,
+        ]}
       </p>
     );
   function sendData(e, choice) {
@@ -89,7 +95,7 @@ const MainGame = () => {
 
   function renderAry(messages = []) {
     return (
-      <div>
+      <div style={{ 'margin-top': '48px' }}>
         {messages.map(ele => (
           <GameMessage key={nanoid()} handler={sendData} question={ele} />
         ))}
