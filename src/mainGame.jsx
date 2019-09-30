@@ -6,6 +6,8 @@ import nanoid from 'nanoid';
 import GameMessage from './gameMessage';
 import lineMap, { questionStatus, gameStatus } from './lines';
 
+import './mainGame.css';
+
 const MainGame = () => {
   const [msgArray, setMsgArray] = useState([lineMap.get(1)]);
   const [gStatus, setGStatus] = useState(0);
@@ -59,12 +61,12 @@ const MainGame = () => {
   return (
     <div>
       <div className="gameBox">
-        <p className="gameTitle">To Peacock</p>
+        <p className="gameTitle">Peacock</p>
         {renderAry(msgArray)}
       </div>
       <div>{gStatus}</div>
       <Modal
-        show={gStatus}
+        show={!!gStatus}
         onHide={() => {
           window.location.href = '/mainGame';
         }}

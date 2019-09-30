@@ -5,40 +5,96 @@ import PropTypes from 'prop-types';
 
 import lines, { questionStatus } from './lines';
 
+import './mainGame.css';
+
 const GameMessage = props => {
   let msg;
   const { question, handler } = props;
+  console.log('question', question);
   if (
     question.gameStatus === undefined &&
     question.questionStatus === questionStatus.notAnswerYet
   ) {
+    console.log('if');
     msg = (
-      <div>
-        <p className="msgFromMe">{question.question}</p>
-        <p className="msgToMe">{question.response}</p>
-        <p className="msgFromMe choiceTitle">your choices</p>
-        <p choice="1" onClick={e => handler(e, 0)} className="msgFromMe choice">
-          {lines.get(question.choices[0]).question}
-        </p>
-        <p choice="2" onClick={e => handler(e, 1)} className="msgFromMe choice">
-          {lines.get(question.choices[1]).question}
-        </p>
-        <p choice="3" onClick={e => handler(e, 2)} className="msgFromMe choice">
-          {lines.get(question.choices[2]).question}
-        </p>
-      </div>
+      <>
+        {question.question && question.response ? (
+          <>
+            <div className="msgFromMe">
+              {<p className="msgText roundText">{question.question}</p>}
+            </div>
+            <div className="msgToMe">
+              {<p className="msgText">{question.response}</p>}
+            </div>
+          </>
+        ) : (
+          undefined
+        )}
+        <div className="choicesGroup">
+          <p className="msgFromMe choiceTitle">選擇對話</p>
+          <div
+            choice="1"
+            role="button"
+            tabIndex="0"
+            onClick={e => handler(e, 0)}
+            className="msgFromMe choice"
+          >
+            {
+              <div className="choiceText">
+                {lines.get(question.choices[0]).question}
+              </div>
+            }
+          </div>
+          <div
+            choice="2"
+            role="button"
+            tabIndex="-1"
+            onClick={e => handler(e, 1)}
+            className="msgFromMe choice"
+          >
+            {
+              <p className="choiceText">
+                {lines.get(question.choices[1]).question}
+              </p>
+            }
+          </div>
+          <div
+            choice="3"
+            role="button"
+            tabIndex="-2"
+            onClick={e => handler(e, 2)}
+            className="msgFromMe choice"
+          >
+            {
+              <p className="choiceText lastChoiceText">
+                {lines.get(question.choices[2]).question}
+              </p>
+            }
+          </div>
+        </div>
+      </>
     );
   } else {
     msg = (
-      <div>
-        <p className="msgFromMe">{question.question}</p>
-        <p className="msgToMe">{question.response}</p>
-      </div>
+      <>
+        {question.question && question.response ? (
+          <>
+            <div className="msgFromMe">
+              {<p className="msgText roundText">{question.question}</p>}
+            </div>
+            <div className="msgToMe">
+              {<p className="msgText">{question.response}</p>}
+            </div>
+          </>
+        ) : (
+          undefined
+        )}
+      </>
     );
   }
   return (
     <div key={`${question.question}jfhiaus`} className="gameMsg">
-      {msg}
+      {<div className="msgText">{msg}</div>}
     </div>
   );
 };

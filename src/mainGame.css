@@ -1,0 +1,83 @@
+.gameTitle {
+  height: 96px;
+  line-height: 96px;
+  font-size: 28px;
+  text-align: center;
+  box-shadow: 0px 0px 4px 3px gray;
+}
+
+.msgFromMe {
+  margin-right: 32px;
+  max-width: 400px;
+  margin-left: 366px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.msgToMe {
+  margin-left: 32px;
+  max-width: 400px;
+  font-size: 20px;
+  text-align: center;
+}
+
+div[class*='msgToMe'] > p[class*='msgText'] {
+  background: #f0f0f0;
+  border-radius: 20px 20px 20px 20px;
+  height: 72px;
+  padding: 24px;
+}
+
+div[class*='msgFromMe'] > p[class*='msgText'] {
+  background: -webkit-linear-gradient(left, #4a90e2, #80c3f4);
+  background: -o-linear-gradient(right, #4a90e2, #80c3f4);
+  background: -moz-linear-gradient(right, #4a90e2, #80c3f4);
+  background: linear-gradient(to right, #4a90e2, #80c3f4);
+  height: 72px;
+  color: white;
+  padding: 24px;
+}
+
+.firstFromMeMsg {
+}
+
+.choiceTitle {
+  text-align: center;
+  height: 72px;
+  line-height: 72px;
+  font-size: 20px;
+  border-radius: 20px 20px 0px 0px;
+  margin-bottom: 0px;
+  color: white;
+
+  background: -webkit-linear-gradient(left, #4a90e2, #80c3f4);
+  background: -o-linear-gradient(right, #4a90e2, #80c3f4);
+  background: -moz-linear-gradient(right, #4a90e2, #80c3f4);
+  background: linear-gradient(to right, #4a90e2, #80c3f4);
+}
+
+.roundText {
+  background: -webkit-linear-gradient(left, #4a90e2, #80c3f4);
+  background: -o-linear-gradient(right, #4a90e2, #80c3f4);
+  background: -moz-linear-gradient(right, #4a90e2, #80c3f4);
+  background: linear-gradient(to right, #4a90e2, #80c3f4);
+  border-radius: 20px 20px 20px 20px;
+}
+
+.lastChoiceText {
+  font-size: 20px;
+  border-radius: 0px 0px 20px 20px;
+  border-bottom: 1px solid #80c3f4;
+  border-left: 1px solid #80c3f4;
+  border-right: 1px solid #80c3f4;
+  height: 72px;
+}
+
+.choiceText {
+  height: 72px;
+  font-size: 20px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #80c3f4;
+  border-left: 1px solid #80c3f4;
+  border-right: 1px solid #80c3f4;
+}
