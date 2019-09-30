@@ -1,7 +1,5 @@
 const showerCard = '嗯嗯，我先去洗澡';
-// export const textToMultiLine = text => {
-//   return text.split('\n').map((it, i) => <div key={'x' + i}>{it}</div>);
-// };
+
 export const guidePageText = `在這個風風雨雨的社會，線上聊天已經成為交友的起手式，對方不必瞭解你，幾句開場白就能判你情場生死。
 懂聊，就像孔雀抖動華麗尾羽，輕鬆開屏吸引對方；不懂聊，就會出現「我先去洗澡」的江湖傳說，之後輕則已讀不回，重則封鎖刪除。`;
 export const guidePageTwoText = `接下來，請試著和這位女性聊天。請盡量避免讓對方回覆「我先去洗澡」的對話，當對方這樣回覆時，聊天即結束，您身後象徵吸引力的孔雀尾羽也不會開屏。

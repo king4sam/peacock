@@ -10,7 +10,7 @@ export const GuideIcon = () => {
         src="peacockOpen.png"
         height="42"
         width="42"
-        style={{ opacity: 0.8 }}
+        style={{ opacity: 0.6 }}
         alt="peacock"
       />
     </div>
