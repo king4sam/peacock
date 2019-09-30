@@ -1,17 +1,70 @@
 import React, { useState } from 'react';
-// import ReactModal from 'react-modal';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import ReactModal from 'react-modal';
 import nanoid from 'nanoid';
 import GameMessage from './gameMessage';
-import lineMap, { questionStatus, gameStatus } from './lines';
+import lineMap, {
+  questionStatus,
+  gameStatus,
+  winWord,
+  loseWord,
+} from './lines';
 
 import './mainGame.css';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    transform: 'translate(-50%, -50%)',
+    background: 'none',
+    border: 'none',
+    'text-align': 'center',
+  },
+  overlay: {
+    backgroundColor: `rgba(255, 255, 255, 0.8)`,
+  },
+};
+
+ReactModal.setAppElement('#root');
 
 const MainGame = () => {
   const [msgArray, setMsgArray] = useState([lineMap.get(1)]);
   const [gStatus, setGStatus] = useState(0);
 
+  const modalIcon =
+    gStatus === gameStatus.win ? (
+      <img
+        className="modalIcon"
+        src="peacockOpen.png"
+        height="80px"
+        style={{ opacity: 0.8 }}
+        alt="peacockOpen"
+      />
+    ) : (
+      <img
+        className="modalIcon"
+        src="peacockClose.png"
+        height="80px"
+        style={{ opacity: 0.8 }}
+        alt="peacockClose"
+      />
+    );
+  const modalContent =
+    gStatus === gameStatus.win ? (
+      <p className="modalContent">
+        {winWord.split('\n').map(it => (
+          <div key={nanoid()}>{it}</div>
+        ))}
+      </p>
+    ) : (
+      <p className="modalContent">
+        {loseWord.split('\n').map(it => (
+          <div key={nanoid()}>{it}</div>
+        ))}
+      </p>
+    );
   function sendData(e, choice) {
     console.log('choice', choice);
     console.log(lineMap.get(choice));
@@ -64,47 +117,29 @@ const MainGame = () => {
         <p className="gameTitle">Peacock</p>
         {renderAry(msgArray)}
       </div>
-      <div>{gStatus}</div>
-      <Modal
-        show={!!gStatus}
-        onHide={() => {
-          window.location.href = '/mainGame';
-        }}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Woohoo, you&apos;re reading this text in a modal!
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              window.location.href = '/mainGame';
-            }}
-          >
-            Restart
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      {/* <ReactModal
+      <ReactModal
         isOpen={!!gStatus}
         contentLabel="onRequestClose Example"
-        // onRequestClose={this.handleCloseModal}
-        className="Modal"
-        overlayClassName="Overlay"
+        onRequestClose={() => {
+          window.location.href = '/mainGame';
+        }}
+        style={customStyles}
       >
-        <p>Modal text!</p>
+        <div className="modalWindow">
+          {modalIcon}
+          {modalContent}
+        </div>
+
         <button
+          className="modalButton"
           type="button"
           onClick={() => {
             window.location.href = '/mainGame';
           }}
         >
-          Restart
+          RESTART
         </button>
-      </ReactModal> */}
+      </ReactModal>
     </div>
   );
 };
