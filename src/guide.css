@@ -7,8 +7,7 @@
   margin-right: 120px;
   height: 528px;
   width: 528px;
-  /* TODO:  */
-  box-shadow: 3px 3px 9px 9px black, -3px -3px 9px black;
+  box-shadow: 0px 0px 32px 9px rgba(0, 0, 0, 0.24);
 }
 
 .guideline {
@@ -28,6 +27,7 @@
   margin-bottom: 32px;
   margin-left: 48px;
   margin-right: 48px;
+  text-align: left;
 }
 
 .guideButtons {
@@ -98,4 +98,9 @@
   height: 88px;
   display: inline-block;
   padding: 0;
+}
+
+.guideContent {
+  font-size: 22px;
+  line-height: 44px;
 }
