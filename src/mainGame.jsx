@@ -108,13 +108,9 @@ const MainGame = () => {
     //   msgArray[msgArray.length - 1].question +
     //     msgArray[msgArray.length - 1].gameStatus
     // );
-    setGStatus(msgArray[msgArray.length - 1].gameStatus);
-  }
-
-  if (gStatus === gameStatus.win) {
-    // alert('win');
-  } else if (gStatus === gameStatus.lose) {
-    // alert('lost');
+    setTimeout(() => {
+      setGStatus(msgArray[msgArray.length - 1].gameStatus);
+    }, 2000);
   }
 
   return (
