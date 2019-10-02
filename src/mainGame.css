@@ -11,7 +11,7 @@
   max-width: 400px;
   margin-left: 366px;
   font-size: 20px;
-  text-align: left;
+  text-align: right;
 }
 
 .msgToMe {
@@ -38,7 +38,7 @@ div[class*='msgFromMe'] > p[class*='msgText'] {
   background: linear-gradient(to right, #4a90e2, #80c3f4);
   color: white;
   padding: 24px;
-  text-align: right;
+  text-align: left;
   display: inline-block;
   margin-bottom: 0px;
 }
