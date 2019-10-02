@@ -11,7 +11,7 @@
   max-width: 400px;
   margin-left: 366px;
   font-size: 20px;
-  text-align: right;
+  text-align: left;
 }
 
 .msgToMe {
@@ -72,6 +72,7 @@ div[class*='msgFromMe'] > p[class*='msgText'] {
 .lastChoiceText {
   font-size: 20px;
   line-height: 30px;
+  text-align: center;
   border-radius: 0px 0px 20px 20px;
   border-bottom: 1px solid #80c3f4;
   border-left: 1px solid #80c3f4;
@@ -83,6 +84,7 @@ div[class*='msgFromMe'] > p[class*='msgText'] {
   line-height: 30px;
   padding: 24px;
   margin-bottom: 0px;
+  text-align: center;
   border-bottom: 1px solid #80c3f4;
   border-left: 1px solid #80c3f4;
   border-right: 1px solid #80c3f4;
@@ -91,7 +93,10 @@ div[class*='msgFromMe'] > p[class*='msgText'] {
 .modalWindow {
   box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.12);
   width: 528px;
+  height: 360px;
   background: white;
+  border-radius: 32px;
+  position: relative;
 }
 
 .modalContent {
@@ -99,6 +104,9 @@ div[class*='msgFromMe'] > p[class*='msgText'] {
   margin-right: 48px;
   font-size: 22px;
   line-height: 44px;
+  text-align: left;
+  position: absolute;
+  bottom: 32px;
 }
 
 .modalButton {

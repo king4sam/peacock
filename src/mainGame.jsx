@@ -43,7 +43,7 @@ const MainGame = () => {
         src="peacockOpen.png"
         height="100px"
         width="128px"
-        style={{ opacity: 0.6, 'margin-top': '40px' }}
+        style={{ opacity: 0.6, 'margin-top': '40px', 'margin-bottom': '40px' }}
         alt="peacockOpen"
       />
     ) : (
@@ -52,24 +52,23 @@ const MainGame = () => {
         src="peacockClose.png"
         height="104px"
         width="54px"
-        style={{ opacity: 0.6, 'margin-top': '40px' }}
+        style={{ opacity: 0.6, 'margin-top': '40px', 'margin-bottom': '40px' }}
         alt="peacockClose"
       />
     );
   const modalContent =
     gStatus === gameStatus.win ? (
-      <p className="modalContent">
+      <div className="modalContent">
         {winWord.split('\n').map(it => (
           <div key={nanoid()}>{it}</div>
         ))}
-      </p>
+      </div>
     ) : (
-      <p className="modalContent">
-        {[
-          ...loseWord.split('\n').map(it => <div key={nanoid()}>{it}</div>),
-          <div key={nanoid()} style={{ 'padding-bottom': '32px' }} />,
-        ]}
-      </p>
+      <div className="modalContent">
+        {loseWord.split('\n').map(it => (
+          <div key={nanoid()}>{it}</div>
+        ))}
+      </div>
     );
   function sendData(e, choice) {
     console.log('choice', choice);
@@ -110,7 +109,7 @@ const MainGame = () => {
     // );
     setTimeout(() => {
       setGStatus(msgArray[msgArray.length - 1].gameStatus);
-    }, 2000);
+    }, 1000);
   }
 
   return (
@@ -136,7 +135,7 @@ const MainGame = () => {
           className="modalButton"
           type="button"
           onClick={() => {
-            window.location.href = '/mainGame';
+            window.location.href = '/';
           }}
         >
           RESTART

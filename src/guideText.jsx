@@ -12,7 +12,7 @@ const GuideText = props => {
       : guidePageTwoText.split('\n').map(it => <div key={nanoid()}>{it}</div>);
   return (
     <div className="guideText">
-      <p className="guideContent">{context}</p>
+      <div className="guideContent">{context}</div>
     </div>
   );
 };
