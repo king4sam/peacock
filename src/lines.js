@@ -328,7 +328,7 @@ const lines = [
     index: 47,
     question: '甜點類我也有口袋名單，我整理一下傳給你',
     response: '有可以宅配的更好，不然不知道什麼時候才能去吃',
-    choices: [],
+    choices: [50, 51, 52],
   },
   {
     index: 48,
