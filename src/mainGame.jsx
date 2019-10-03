@@ -71,7 +71,7 @@ const MainGame = () => {
       </div>
     );
   function sendData(e, choice) {
-    console.log('choice', choice);
+    console.log('choice', e);
     console.log(lineMap.get(choice));
     // console.log('state', this.state);
     console.log('update ary ', {
@@ -94,7 +94,7 @@ const MainGame = () => {
 
   function renderAry(messages = []) {
     return (
-      <div style={{ 'margin-top': '48px' }}>
+      <div style={{ marginTop: '48px' }}>
         {messages.map(ele => (
           <GameMessage key={nanoid()} handler={sendData} question={ele} />
         ))}
