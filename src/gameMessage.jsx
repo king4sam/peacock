@@ -1,13 +1,16 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-cycle
+import { clickContextStore } from './mainGame';
 
 import lines, { questionStatus } from './lines';
 
 import './mainGame.css';
 
 const GameMessage = props => {
+  const { clickStatus, setClickStatus } = useContext(clickContextStore);
   let msg;
   const { question, handler } = props;
   console.log('question', question);
@@ -36,7 +39,14 @@ const GameMessage = props => {
             choice="1"
             role="button"
             tabIndex="0"
-            onClick={e => handler(e, 0)}
+            onClick={
+              clickStatus
+                ? null
+                : e => {
+                    setClickStatus(true);
+                    setTimeout(() => handler(e, 0), 1000);
+                  }
+            }
             className="msgFromMe choice"
           >
             {
@@ -49,7 +59,14 @@ const GameMessage = props => {
             choice="2"
             role="button"
             tabIndex="-1"
-            onClick={e => handler(e, 1)}
+            onClick={
+              clickStatus
+                ? null
+                : e => {
+                    setClickStatus(true);
+                    setTimeout(() => handler(e, 1), 1000);
+                  }
+            }
             className="msgFromMe choice"
           >
             {
@@ -62,7 +79,14 @@ const GameMessage = props => {
             choice="3"
             role="button"
             tabIndex="-2"
-            onClick={e => handler(e, 2)}
+            onClick={
+              clickStatus
+                ? null
+                : e => {
+                    setClickStatus(true);
+                    setTimeout(() => handler(e, 2), 1000);
+                  }
+            }
             className="msgFromMe choice"
           >
             {

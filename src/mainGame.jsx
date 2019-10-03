@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import nanoid from 'nanoid';
@@ -11,6 +12,8 @@ import lineMap, {
 
 import './mainGame.css';
 
+export const clickContextStore = React.createContext(null);
+
 const customStyles = {
   content: {
     top: '50%',
@@ -20,7 +23,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)',
     background: 'none',
     border: 'none',
-    'text-align': 'center',
+    textAlign: 'center',
   },
   overlay: {
     backgroundColor: `rgba(255, 255, 255, 0.8)`,
@@ -30,6 +33,7 @@ const customStyles = {
 ReactModal.setAppElement('#root');
 
 const MainGame = () => {
+  const [clickStatus, setClickStatus] = useState(false);
   const [msgArray, setMsgArray] = useState([lineMap.get(1)]);
   const [gStatus, setGStatus] = useState(0);
   useEffect(() => {
@@ -43,7 +47,7 @@ const MainGame = () => {
         src="peacockOpen.png"
         height="100px"
         width="128px"
-        style={{ opacity: 0.6, 'margin-top': '40px', 'margin-bottom': '40px' }}
+        style={{ opacity: 0.6, marginTop: '40px' }}
         alt="peacockOpen"
       />
     ) : (
@@ -52,7 +56,7 @@ const MainGame = () => {
         src="peacockClose.png"
         height="104px"
         width="54px"
-        style={{ opacity: 0.6, 'margin-top': '40px', 'margin-bottom': '40px' }}
+        style={{ opacity: 0.6, marginTop: '40px' }}
         alt="peacockClose"
       />
     );
@@ -71,6 +75,8 @@ const MainGame = () => {
       </div>
     );
   function sendData(e, choice) {
+    setClickStatus(false);
+    console.log('clickStatus', clickStatus);
     console.log('choice', e);
     console.log(lineMap.get(choice));
     // console.log('state', this.state);
@@ -113,35 +119,37 @@ const MainGame = () => {
   }
 
   return (
-    <div>
-      <div className="gameBox">
-        <p className="gameTitle">Peacock</p>
-        {renderAry(msgArray)}
-      </div>
-      <ReactModal
-        isOpen={!!gStatus}
-        contentLabel="onRequestClose Example"
-        onRequestClose={() => {
-          window.location.href = '/mainGame';
-        }}
-        style={customStyles}
-      >
-        <div className="modalWindow">
-          {modalIcon}
-          {modalContent}
+    <clickContextStore.Provider value={{ clickStatus, setClickStatus }}>
+      <div>
+        <div className="gameBox">
+          <p className="gameTitle">Peacock</p>
+          {renderAry(msgArray)}
         </div>
-
-        <button
-          className="modalButton"
-          type="button"
-          onClick={() => {
-            window.location.href = '/';
+        <ReactModal
+          isOpen={!!gStatus}
+          contentLabel="onRequestClose Example"
+          onRequestClose={() => {
+            window.location.href = '/mainGame';
           }}
+          style={customStyles}
         >
-          RESTART
-        </button>
-      </ReactModal>
-    </div>
+          <div className="modalWindow">
+            {modalIcon}
+            {modalContent}
+          </div>
+
+          <button
+            className="modalButton"
+            type="button"
+            onClick={() => {
+              window.location.href = '/';
+            }}
+          >
+            RESTART
+          </button>
+        </ReactModal>
+      </div>
+    </clickContextStore.Provider>
   );
 };
 
