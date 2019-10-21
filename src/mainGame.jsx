@@ -14,6 +14,15 @@ import './mainGame.css';
 
 export const clickContextStore = React.createContext(null);
 
+function shuffle(a) {
+  const res = [...a];
+  for (let i = a.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [res[i], res[j]] = [res[j], res[i]];
+  }
+  return res;
+}
+
 const customStyles = {
   content: {
     top: '50%',
@@ -32,9 +41,13 @@ const customStyles = {
 
 ReactModal.setAppElement('#root');
 
+const rootQuestion = lineMap.get(1);
+
 const MainGame = () => {
   const [clickStatus, setClickStatus] = useState(false);
-  const [msgArray, setMsgArray] = useState([lineMap.get(1)]);
+  const [msgArray, setMsgArray] = useState([
+    { ...rootQuestion, choices: shuffle(rootQuestion.choices) },
+  ]);
   const [gStatus, setGStatus] = useState(0);
   useEffect(() => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
@@ -80,13 +93,12 @@ const MainGame = () => {
     console.log('choice', e);
     console.log(lineMap.get(choice));
     // console.log('state', this.state);
-    console.log('update ary ', {
-      ...msgArray[msgArray.length - 1],
-      questionStatus: questionStatus.continue,
-    });
     console.log(
       'new ',
       lineMap.get(msgArray[msgArray.length - 1].choices[choice])
+    );
+    const nextQuestion = lineMap.get(
+      msgArray[msgArray.length - 1].choices[choice]
     );
     setMsgArray([
       ...msgArray.slice(0, msgArray.length - 1),
@@ -94,7 +106,7 @@ const MainGame = () => {
         ...msgArray[msgArray.length - 1],
         questionStatus: questionStatus.continue,
       },
-      lineMap.get(msgArray[msgArray.length - 1].choices[choice]),
+      { ...nextQuestion, choices: shuffle(nextQuestion.choices) },
     ]);
   }
 
