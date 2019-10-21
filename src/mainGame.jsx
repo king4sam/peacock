@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import nanoid from 'nanoid';
 import GameMessage from './gameMessage';
+import api from './service/api';
 import lineMap, {
   questionStatus,
   gameStatus,
@@ -44,6 +45,7 @@ ReactModal.setAppElement('#root');
 const rootQuestion = lineMap.get(1);
 
 const MainGame = () => {
+  console.log('process.env', process.env);
   const [clickStatus, setClickStatus] = useState(false);
   const [msgArray, setMsgArray] = useState([
     { ...rootQuestion, choices: shuffle(rootQuestion.choices) },
@@ -125,7 +127,13 @@ const MainGame = () => {
     //   msgArray[msgArray.length - 1].question +
     //     msgArray[msgArray.length - 1].gameStatus
     // );
-    setTimeout(() => {
+    setTimeout(async () => {
+      console.log('ready to send request');
+      if (msgArray[msgArray.length - 1].gameStatus === gameStatus.win) {
+        await api.active();
+      } else {
+        await api.inactive();
+      }
       setGStatus(msgArray[msgArray.length - 1].gameStatus);
     }, 1000);
   }
