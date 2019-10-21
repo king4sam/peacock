@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as RightArrow } from './right-arrow.svg';
 import { ReactComponent as LeftArrow } from './left-arrow.svg';
 
 const GuideButtons = props => {
@@ -15,14 +14,11 @@ const GuideButtons = props => {
             className="guideButtonDisable"
             disabled="disabled"
           >
-            <LeftArrow
-              alt="leftArrow"
-              style={{
-                height: '88px',
-                width: '88px',
-                path: { fill: 'yellow' },
-              }}
-              transform="scale(0.5)"
+            <img
+              alt="leftarrwo"
+              height="44px"
+              width="88px"
+              src="./left-arrow.svg"
             />
           </button>
           <div className="divider" />
@@ -33,10 +29,11 @@ const GuideButtons = props => {
               handler(page + 1);
             }}
           >
-            <RightArrow
-              alt="RightArrow"
-              style={{ height: '88px', width: '88px' }}
-              transform="scale(0.5)"
+            <img
+              alt="leftarrwo"
+              height="44px"
+              width="88px"
+              src="./right-arrow.svg"
             />
           </button>
         </>
@@ -49,10 +46,11 @@ const GuideButtons = props => {
               handler(page + -1);
             }}
           >
-            <LeftArrow
-              alt="leftArrow"
-              style={{ height: '88px', width: '88px' }}
-              transform="scale(0.5)"
+            <img
+              alt="leftarrwo"
+              height="44px"
+              width="88px"
+              src="./left-arrow.svg"
             />
           </button>
           <button
