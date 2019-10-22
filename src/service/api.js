@@ -22,7 +22,7 @@ apiInstance.interceptors.request.use(
 const active = async () => {
   try {
     await apiInstance.get('/active');
-    await apiInstance.get('/inactive');
+    await apiInstance.get('/disactive');
   } catch (error) {
     console.log(error);
   }
@@ -31,7 +31,7 @@ const active = async () => {
 const inactive = async () => {
   try {
     await apiInstance.get('/active');
-    await apiInstance.get('/inactive');
+    await apiInstance.get('/disactive');
   } catch (error) {
     console.log(error);
   }
