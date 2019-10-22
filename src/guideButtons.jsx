@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ReactComponent as LeftArrow } from './left-arrow.svg';
 
 const GuideButtons = props => {
   const { page, handler } = props;

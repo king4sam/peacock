@@ -3,14 +3,17 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line import/no-cycle
-import { clickContextStore } from './mainGame';
+import { clickContextStore, answerStatusStore } from './mainGame';
 
 import lines, { questionStatus } from './lines';
 
 import './mainGame.css';
 
+const DELAY = 3900;
+
 const GameMessage = props => {
   const { clickStatus, setClickStatus } = useContext(clickContextStore);
+  const { setAsnwerStatus } = useContext(answerStatusStore);
   let msg;
   const { question, handler } = props;
   console.log('question', question);
@@ -44,7 +47,11 @@ const GameMessage = props => {
                 ? null
                 : e => {
                     setClickStatus(true);
-                    setTimeout(() => handler(e, 0), 1000);
+                    setAsnwerStatus(true);
+                    setTimeout(() => {
+                      handler(e, 0);
+                      setAsnwerStatus(false);
+                    }, DELAY);
                   }
             }
             className="msgFromMe choice"
@@ -64,7 +71,11 @@ const GameMessage = props => {
                 ? null
                 : e => {
                     setClickStatus(true);
-                    setTimeout(() => handler(e, 1), 1000);
+                    setAsnwerStatus(true);
+                    setTimeout(() => {
+                      setAsnwerStatus(false);
+                      handler(e, 1);
+                    }, DELAY);
                   }
             }
             className="msgFromMe choice"
@@ -84,7 +95,11 @@ const GameMessage = props => {
                 ? null
                 : e => {
                     setClickStatus(true);
-                    setTimeout(() => handler(e, 2), 1000);
+                    setAsnwerStatus(true);
+                    setTimeout(() => {
+                      setAsnwerStatus(false);
+                      handler(e, 2);
+                    }, DELAY);
                   }
             }
             className="msgFromMe choice"

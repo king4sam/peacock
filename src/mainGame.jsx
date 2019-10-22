@@ -14,6 +14,7 @@ import lineMap, {
 import './mainGame.css';
 
 export const clickContextStore = React.createContext(null);
+export const answerStatusStore = React.createContext(null);
 
 function shuffle(a) {
   const res = [...a];
@@ -46,6 +47,7 @@ const rootQuestion = lineMap.get(1);
 
 const MainGame = () => {
   console.log('process.env', process.env);
+  const [asnwerStatus, setAsnwerStatus] = useState(false);
   const [clickStatus, setClickStatus] = useState(false);
   const [msgArray, setMsgArray] = useState([
     { ...rootQuestion, choices: shuffle(rootQuestion.choices) },
@@ -113,11 +115,18 @@ const MainGame = () => {
   }
 
   function renderAry(messages = []) {
+    console.log('get asnwerStatus', asnwerStatus);
+    const typing = asnwerStatus ? (
+      <div className="msgToMe">
+        <img alt="typing" height="72px" src="typing.gif" />
+      </div>
+    ) : null;
     return (
       <div style={{ marginTop: '48px' }}>
         {messages.map(ele => (
           <GameMessage key={nanoid()} handler={sendData} question={ele} />
         ))}
+        {typing}
       </div>
     );
   }
@@ -139,37 +148,39 @@ const MainGame = () => {
   }
 
   return (
-    <clickContextStore.Provider value={{ clickStatus, setClickStatus }}>
-      <div>
-        <div className="gameBox">
-          <p className="gameTitle">Peacock</p>
-          {renderAry(msgArray)}
-        </div>
-        <ReactModal
-          isOpen={!!gStatus}
-          contentLabel="onRequestClose Example"
-          onRequestClose={() => {
-            window.location.href = '/mainGame';
-          }}
-          style={customStyles}
-        >
-          <div className="modalWindow">
-            {modalIcon}
-            {modalContent}
+    <answerStatusStore.Provider value={{ asnwerStatus, setAsnwerStatus }}>
+      <clickContextStore.Provider value={{ clickStatus, setClickStatus }}>
+        <div>
+          <div className="gameBox">
+            <p className="gameTitle">Peacock</p>
+            {renderAry(msgArray)}
           </div>
-
-          <button
-            className="modalButton"
-            type="button"
-            onClick={() => {
-              window.location.href = '/';
+          <ReactModal
+            isOpen={!!gStatus}
+            contentLabel="onRequestClose Example"
+            onRequestClose={() => {
+              window.location.href = '/mainGame';
             }}
+            style={customStyles}
           >
-            RESTART
-          </button>
-        </ReactModal>
-      </div>
-    </clickContextStore.Provider>
+            <div className="modalWindow">
+              {modalIcon}
+              {modalContent}
+            </div>
+
+            <button
+              className="modalButton"
+              type="button"
+              onClick={() => {
+                window.location.href = '/';
+              }}
+            >
+              RESTART
+            </button>
+          </ReactModal>
+        </div>
+      </clickContextStore.Provider>
+    </answerStatusStore.Provider>
   );
 };
 
