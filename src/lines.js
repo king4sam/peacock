@@ -573,7 +573,7 @@ const lines = [
   },
   {
     index: 84,
-    question: '狗狗永遠難波萬！！！',
+    question: '貓很陰欸不都是巫婆養的嗎？',
     response: showerCard,
     gameStatus: gameStatus.lose,
     choices: [],
