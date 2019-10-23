@@ -4,15 +4,17 @@ export const guidePageText = `在這個風風雨雨的社會，線上聊天已�
 懂聊，就像孔雀抖動華麗尾羽，輕鬆開屏吸引對方；不懂聊，就會出現「我先去洗澡」的江湖傳說，之後輕則已讀不回，重則封鎖刪除。`;
 export const guidePageTwoText = `接下來，請試著和這位女性聊天。請盡量避免讓對方回覆「我先去洗澡」的對話，當對方這樣回覆時，聊天即結束，您身後象徵吸引力的孔雀尾羽也不會開屏。
 若成功與對方完成對話，您身後的孔雀尾羽就會完全展開。`;
-export const winWord = `看看現在鏡中充滿吸引力的孔雀。
-您的聊天才能讓您成為這個時代的交友能手
-aka 情場浪子。`;
-export const loseWord = `您已召喚「我先去洗澡」的江湖傳說。
-很抱歉，對方不想再和您繼續聊天，所以您的孔雀尾羽也將無法展開。`;
+export const winWord = `您的聊天才能讓您成為這個時代的
+交友能手 aka 情場浪子。`;
+export const loseWord = `對方已經不想和你繼續聊天
+因此你的孔雀尾羽也將無法展開`;
 export const gameStatus = {
   win: 1,
   lose: 2,
 };
+
+export const winSlogan = `BRAVO!`;
+export const loseSlogan = `Oh No...`;
 
 export const questionStatus = {
   continue: 1,
