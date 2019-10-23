@@ -13,7 +13,7 @@ const DELAY = 3900;
 
 const GameMessage = props => {
   const { clickStatus, setClickStatus } = useContext(clickContextStore);
-  const { setAsnwerStatus } = useContext(answerStatusStore);
+  const { answerStatus, setAsnwerStatus } = useContext(answerStatusStore);
   let msg;
   const { question, handler } = props;
   console.log('question', question);
@@ -21,7 +21,7 @@ const GameMessage = props => {
     question.gameStatus === undefined &&
     question.questionStatus === questionStatus.notAnswerYet
   ) {
-    console.log('if');
+    console.log('answerStatus', answerStatus);
     msg = (
       <>
         {question.question && question.response ? (
@@ -47,7 +47,7 @@ const GameMessage = props => {
                 ? null
                 : e => {
                     setClickStatus(true);
-                    setAsnwerStatus(true);
+                    setAsnwerStatus(1);
                     setTimeout(() => {
                       handler(e, 0);
                       setAsnwerStatus(false);
@@ -57,7 +57,11 @@ const GameMessage = props => {
             className="msgFromMe choice"
           >
             {
-              <div className="choiceText">
+              <div
+                className={
+                  answerStatus === 1 ? 'selected choiceText' : 'choiceText'
+                }
+              >
                 {lines.get(question.choices[0]).question}
               </div>
             }
@@ -71,7 +75,7 @@ const GameMessage = props => {
                 ? null
                 : e => {
                     setClickStatus(true);
-                    setAsnwerStatus(true);
+                    setAsnwerStatus(2);
                     setTimeout(() => {
                       setAsnwerStatus(false);
                       handler(e, 1);
@@ -81,9 +85,13 @@ const GameMessage = props => {
             className="msgFromMe choice"
           >
             {
-              <p className="choiceText">
+              <div
+                className={
+                  answerStatus === 2 ? 'selected choiceText' : 'choiceText'
+                }
+              >
                 {lines.get(question.choices[1]).question}
-              </p>
+              </div>
             }
           </div>
           <div
@@ -95,7 +103,7 @@ const GameMessage = props => {
                 ? null
                 : e => {
                     setClickStatus(true);
-                    setAsnwerStatus(true);
+                    setAsnwerStatus(3);
                     setTimeout(() => {
                       setAsnwerStatus(false);
                       handler(e, 2);
@@ -105,9 +113,15 @@ const GameMessage = props => {
             className="msgFromMe choice"
           >
             {
-              <p className="choiceText lastChoiceText">
+              <div
+                className={
+                  answerStatus === 3
+                    ? 'selected choiceText lastChoiceText'
+                    : 'choiceText lastChoiceText'
+                }
+              >
                 {lines.get(question.choices[2]).question}
-              </p>
+              </div>
             }
           </div>
         </div>

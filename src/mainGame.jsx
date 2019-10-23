@@ -47,7 +47,7 @@ const rootQuestion = lineMap.get(1);
 
 const MainGame = () => {
   console.log('process.env', process.env);
-  const [asnwerStatus, setAsnwerStatus] = useState(false);
+  const [answerStatus, setAsnwerStatus] = useState(false);
   const [clickStatus, setClickStatus] = useState(false);
   const [msgArray, setMsgArray] = useState([
     { ...rootQuestion, choices: shuffle(rootQuestion.choices) },
@@ -115,8 +115,8 @@ const MainGame = () => {
   }
 
   function renderAry(messages = []) {
-    console.log('get asnwerStatus', asnwerStatus);
-    const typing = asnwerStatus ? (
+    console.log('get asnwerStatus', answerStatus);
+    const typing = answerStatus ? (
       <div className="msgToMe">
         <img alt="typing" height="72px" src="typing.gif" />
       </div>
@@ -148,7 +148,7 @@ const MainGame = () => {
   }
 
   return (
-    <answerStatusStore.Provider value={{ asnwerStatus, setAsnwerStatus }}>
+    <answerStatusStore.Provider value={{ answerStatus, setAsnwerStatus }}>
       <clickContextStore.Provider value={{ clickStatus, setClickStatus }}>
         <div>
           <div className="gameBox">
