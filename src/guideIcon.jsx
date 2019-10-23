@@ -7,7 +7,7 @@ export const GuideIcon = () => {
     <div className="guideIcon">
       <img
         className="guidelineIcon"
-        src="peacockOpen.png"
+        src="peacockOpenBlack.png"
         height="42"
         width="42"
         style={{ opacity: 0.6 }}

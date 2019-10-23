@@ -9,6 +9,8 @@ import lineMap, {
   gameStatus,
   winWord,
   loseWord,
+  winSlogan,
+  loseSlogan,
 } from './lines';
 
 import './mainGame.css';
@@ -57,23 +59,46 @@ const MainGame = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   });
 
+  const modalButton =
+    gStatus === gameStatus.win ? (
+      <button
+        className="modalButton modalButtonWin"
+        type="button"
+        onClick={() => {
+          window.location.href = '/';
+        }}
+      >
+        Got It
+      </button>
+    ) : (
+      <button
+        className="modalButton modalButtonLose"
+        type="button"
+        onClick={() => {
+          window.location.href = '/';
+        }}
+      >
+        RESTART
+      </button>
+    );
+
   const modalIcon =
     gStatus === gameStatus.win ? (
       <img
         className="modalIcon"
         src="peacockOpen.png"
-        height="100px"
-        width="128px"
-        style={{ opacity: 0.6, marginTop: '40px' }}
+        height="120px"
+        width="154px"
+        style={{ opacity: 0.6, marginTop: '48px' }}
         alt="peacockOpen"
       />
     ) : (
       <img
         className="modalIcon"
         src="peacockClose.png"
-        height="104px"
-        width="54px"
-        style={{ opacity: 0.6, marginTop: '40px' }}
+        height="130px"
+        width="68px"
+        style={{ opacity: 0.6, marginTop: '48px' }}
         alt="peacockClose"
       />
     );
@@ -91,6 +116,14 @@ const MainGame = () => {
         ))}
       </div>
     );
+
+  const modalSlogan =
+    gStatus === gameStatus.win ? (
+      <div className="winSlogan">{winSlogan}</div>
+    ) : (
+      <div className="loseSlogan">{loseSlogan}</div>
+    );
+
   function sendData(e, choice) {
     setClickStatus(false);
     console.log('clickStatus', clickStatus);
@@ -165,18 +198,10 @@ const MainGame = () => {
           >
             <div className="modalWindow">
               {modalIcon}
+              {modalSlogan}
               {modalContent}
             </div>
-
-            <button
-              className="modalButton"
-              type="button"
-              onClick={() => {
-                window.location.href = '/';
-              }}
-            >
-              RESTART
-            </button>
+            {modalButton}
           </ReactModal>
         </div>
       </clickContextStore.Provider>
